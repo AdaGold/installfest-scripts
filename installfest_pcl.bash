@@ -4,11 +4,17 @@
 
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
+# Add path for homebrew to ~/.zshrc file
+
 if [ $(uname -m) == arm64 ]
 then
-  echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> /Users/$(whoami)/.zprofile
+  echo "export PATH=$PATH:/opt/homebrew/bin/opt/homebrew/bin/" >> ~/.zshrc
+  echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.zshrc
   eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
+
+# Get the updated path for homebrew
+source ~/.zshrc
 
 # Then install python
 brew install python
